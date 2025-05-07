@@ -1,5 +1,5 @@
 env
 .env
 node_modules
-geminiImageGenerator.js
+# geminiImageGenerator.js
 public

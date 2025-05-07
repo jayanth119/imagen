@@ -7,6 +7,7 @@ import logger from "morgan";
 import indexRouter from "./routes/index.js";
 import usersRouter from "./routes/users.js";
 import geminiRouter from "./routes/geminiImageGenerator.js"; // ← new
+import cloudinaryRoute from "./routes/imageprompt.js";
 
 const app = express();
 
@@ -22,19 +23,23 @@ app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname)
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
-app.use("/gemini", geminiRouter);     // ← mount at /gemini
+app.use("/gemini", geminiRouter); 
+app.use("/api/cloudinary", cloudinaryRoute);   
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
 //   next(createError(404));
 // });
 
-// error handler
-app.use((err, req, res) => {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-  res.status(err.status || 500);
-  res.render("error");
-});
+// app.use((err, req, res, next) => {
+//   const status = err.status || 500;
+
+//   res.status(status).json({
+//     success: false,
+//     message: err.message || "Internal Server Error",
+//     stack: process.env.NODE_ENV === "production" ? null : err.stack,
+//   });
+// });
+
 
 export default app;
