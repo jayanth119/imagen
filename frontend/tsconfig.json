@@ -5,7 +5,12 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "baseUrl": ".",
     "jsx": "react-jsx", 
-    "types": ["@react-three/fiber", "three"]
+    "types": ["@react-three/fiber", "three"],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
+
 }

@@ -3,3 +3,4 @@ env
 node_modules
 # geminiImageGenerator.js
 public
+.DS_Store

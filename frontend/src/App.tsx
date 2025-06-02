@@ -1,12 +1,12 @@
 
 import './App.css'
-
+import MainApp from './pages/mainpage'
 function App() {
   
 
   return (
     <>
-    hello world
+    <MainApp />
     </>
   )
 }
