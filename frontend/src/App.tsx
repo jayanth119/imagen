@@ -5,8 +5,9 @@ import './App.css'
 // import DisplayImagesPage from './pages/displayImagepage'
 // import LoginPage from './pages/loginpage'
 // import RegisterPage from './pages/register';
-// import { SkeletonCard } from './components/skeletonComponent';
-
+import { SkeletonCard } from './components/skeletonComponent';
+import {InputComponent } from './components/inputComponent';
+import { NavbarComponent } from './components/navbarComponent';
 function App() {
   
 
@@ -18,8 +19,10 @@ function App() {
     {/* <DisplayImagesPage /> */}
     {/* <LoginPage />
     <RegisterPage /> */}
-    {/* <SkeletonCard /> */}
-   
+   <NavbarComponent />
+      <SkeletonCard />
+   <InputComponent />
+
 
     </>
   );
