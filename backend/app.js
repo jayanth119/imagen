@@ -6,6 +6,12 @@ import logger from "morgan";
 import geminiRouter from "./routes/geminiImageGenerator.js"; // ← new
 import cloudinaryRoute from "./routes/imageprompt.js";
 import authRoute from "./routes/authRoute.js"; // ← new
+import { ApolloServer } from 'apollo-server-express';
+import typeDefs from "./graphql/typeDefs.js";
+import resolvers from "./graphql/resolvers.js";
+import http from "http";
+import cors from "cors";
+
 const app = express();
 
 // view engine setup
@@ -20,7 +26,29 @@ app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname)
 
 app.use("/gemini", geminiRouter); 
 app.use("/api/cloudinary", cloudinaryRoute); 
-app.use("api/auth", authRoute); 
+app.use("/api/auth", authRoute); 
+app.use(cors({
+  origin: "http://localhost:3000",  // or true
+  credentials: true,
+  methods: "GET,POST,OPTIONS",
+  allowedHeaders: "Content-Type,Authorization",
+}));
+app.options("*", cors());
+
+const httpServer = http.createServer(app);
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req, res }) => ({ req, res }),
+});
+
+await server.start();
+server.applyMiddleware({ app, path: "/graphql", cors: false });
+
+httpServer.listen({ port: 4000 }, () => {
+  console.log(` Server ready at http://localhost:4000/graphql`);
+});
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
