@@ -4,3 +4,5 @@ node_modules
 # geminiImageGenerator.js
 public
 .DS_Store
+notifications-6c560-firebase-adminsdk-9lpsl-4f00d91c3b.json
+firebaseServiceAccount.js

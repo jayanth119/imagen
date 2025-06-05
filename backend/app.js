@@ -3,12 +3,9 @@ import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-
-import indexRouter from "./routes/index.js";
-import usersRouter from "./routes/users.js";
 import geminiRouter from "./routes/geminiImageGenerator.js"; // ← new
 import cloudinaryRoute from "./routes/imageprompt.js";
-
+import authRoute from "./routes/authRoute.js"; // ← new
 const app = express();
 
 // view engine setup
@@ -21,10 +18,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname), "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
 app.use("/gemini", geminiRouter); 
-app.use("/api/cloudinary", cloudinaryRoute);   
+app.use("/api/cloudinary", cloudinaryRoute); 
+app.use("api/auth", authRoute); 
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
