@@ -1,9 +1,11 @@
 import type { FC } from "react";
 import Card from "@/components/cardComponent";
 import PaginationComponent from "@/components/pagenationComponent";
+import {NavbarComponent} from '../components/navbarComponent'
 const DisplayImagesPage: FC = () => {
   return (
     <>
+      <NavbarComponent />
       <h1 className="text-xl font-bold mb-4 text-cyan-300">
         Image Display Page
       </h1>

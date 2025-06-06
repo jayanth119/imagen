@@ -1,4 +1,6 @@
+import { useLocation } from "react-router-dom";
 export function NavbarComponent() {
+    const location = useLocation();
   return (
    <>
    <div className="navbar  bg-base-100 text-white text-2xl  border border-gray-200 shadow-lg">
@@ -7,7 +9,16 @@ export function NavbarComponent() {
     
   </div>
   <div className="flex gap-2">
-
+     <a
+          href={ location.pathname === "/show" ? "/main" : "/show" }
+          className={`text-white  mr-10  rounded ${
+            location.pathname === "/show"
+              ? "bg-blue-600 font-bold shadow"
+              : "hover:bg-gray-700"
+          }`}
+        >
+         {location.pathname === "/show" ? "Home" : "Display Images"} 
+        </a>
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">

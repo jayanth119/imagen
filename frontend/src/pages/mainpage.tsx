@@ -13,7 +13,7 @@ function MainApp() {
   
    <div className='m-10 p-10'>
 
-      <CustomButton /> 
+      <CustomButton  /> 
        </div>
       </div>
     </>

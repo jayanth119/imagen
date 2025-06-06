@@ -1,30 +1,24 @@
 
 import './App.css'
-// import MainApp from './pages/mainpage'
-// import ScrollTriggered from './components/scrollComponent'
-// import DisplayImagesPage from './pages/displayImagepage'
 import LoginPage from './pages/loginpage'
 import RegisterPage from './pages/register';
-// import { SkeletonCard } from './components/skeletonComponent';
-// import {InputComponent } from './components/inputComponent';
-// import { NavbarComponent } from './components/navbarComponent';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DisplayImagesPage from './pages/displayImagepage';
+import MainApp from './pages/mainpage';
+import WorkingPage from './pages/workingpage';
 function App() {
   
 
   return (
-    <>
-
-    {/* <ScrollTriggered />
-    <MainApp /> */}
-    {/* <DisplayImagesPage /> */}
-    <LoginPage />
-    <RegisterPage />
-   {/* <NavbarComponent />
-      <SkeletonCard />
-   <InputComponent /> */}
-
-
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/show" element={<DisplayImagesPage />} />
+        <Route path="/" element={<MainApp />} />
+        <Route path="/main" element={<WorkingPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
