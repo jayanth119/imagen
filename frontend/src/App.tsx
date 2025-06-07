@@ -8,6 +8,7 @@ import MainApp from './pages/mainpage';
 import WorkingPage from './pages/workingpage';
 // import ToastComponent from './components/toastComponent';
 // import PhoneComponent from './components/phoneComponent';
+import ProfilePage from "./pages/profilePage";
 function App() {
   
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/main" element={<WorkingPage />} />
         {/* <Route path="/toast" element={<ToastComponent />} />
         <Route path="/phone" element={<PhoneComponent />} /> */}
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </BrowserRouter>
   );

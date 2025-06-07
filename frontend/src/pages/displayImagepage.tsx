@@ -2,6 +2,7 @@ import type { FC } from "react";
 import Card from "@/components/cardComponent";
 import PaginationComponent from "@/components/pagenationComponent";
 import {NavbarComponent} from '../components/navbarComponent'
+import Footer from "@/components/footerComponent";
 const DisplayImagesPage: FC = () => {
   return (
     <>
@@ -27,6 +28,7 @@ const DisplayImagesPage: FC = () => {
         <Card id={""} file_name={""} image_url={"https://storage.googleapis.com/demo-midjourney/images/662a3c98e9a86b28ceffde81_Christian_Schloe_V6_p.jpeg"} name={""} url={""} />
       </div>
       <PaginationComponent currentPage={0} totalPages={0} />
+      <Footer/>
     </>
   );
 };

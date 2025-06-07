@@ -1,5 +1,6 @@
 import { GoogleGenAI, Modality } from "@google/genai";
 import { uploadImageToCloudinary } from "./upload_img_prompt.js";
+// import publishJob from "../queue/producer.js"
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -70,6 +71,20 @@ const generateImageController =   async (req, res, next) => {
   }
 }
 
+// const generateImageController = async (req, res, next) => {
+//   const { prompt } = req.body;
+
+//   if (!prompt) {
+//     return res.status(400).json({ error: "Missing 'prompt' in request body." });
+//   }
+
+//   try {
+//     const jobId = await publishJob(prompt);
+//     return res.status(202).json({ message: "Image generation queued.", jobId });
+//   } catch (err) {
+//     return res.status(500).json({ error: "Could not queue image job." });
+//   }
+// };
 
 
 export default generateImageController;

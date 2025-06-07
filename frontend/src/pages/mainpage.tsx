@@ -14,7 +14,9 @@ function MainApp() {
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-md">
             {/* <h1 className="mb-5 text-5xl font-bold">Hello there</h1> */}
-            <ScatterText />
+            <div className="m-10 text-5xl font-bold text-red-400">
+              <ScatterText />
+            </div>
             <CustomButton />
           </div>
         </div>
