@@ -8,4 +8,4 @@ const Qdrantclient = new QdrantClient({
 });
 
 
-export default Qdrantclient;
+export { Qdrantclient } ;
