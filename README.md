@@ -1,173 +1,190 @@
+# 🧠 IMAGEN — Full Stack Generative AI Image Platform
 
-# 🧠 Imagen — AI-Powered Image Generation Platform
-
-**Imagen** is a cutting-edge AI-powered image generation application that allows users to transform text prompts into visually stunning images using Google’s advanced generative models. The app ensures seamless authentication, smart prompt queuing, image generation, cloud storage, and interactive gallery display—all with industry-level architecture and technologies.
-
----
-
-## 🔥 Features
-
-- 🔐 Secure authentication (Firebase)
-- 🧾 Text-to-image prompt input
-- 🎨 AI image generation using Google Generative AI
-- ✅ User feedback ("Satisfied" logic to store)
-- 🖼️ Gallery of previously generated images
-- 📦 Efficient task queueing with RabbitMQ + Redis
-- ☁️ Cloud image storage (Cloudflare)
-- ♻️ State management with Redux Toolkit
-- 🚢 Containerized deployment with Docker
-- 🌐 Built with modern frontend (React + Tailwind + Vite) and backend (Express + TypeScript)
+**IMAGEN** is a production-grade, full-stack AI-powered image generation platform. Users input text prompts, and our system transforms them into stunning images using Google’s cutting-edge Generative AI. It features Firebase-authenticated user sessions, history tracking, image gallery, fast server response using Redis, GraphQL for efficient querying, and a clean UI powered by modern frontend frameworks.
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 Features
 
-### Frontend:
-- ReactJS + TypeScript
-- Tailwind CSS
-- Vite
-- Redux Toolkit
-
-### Backend:
-- Node.js + Express (with TypeScript)
-- Redis (Caching)
-- RabbitMQ (Message Queue)
-- Firebase (Auth & Database)
-- Docker (Containerization)
-- Google Gemini API (for Prompt Understanding)
-- Google Generative Image Model (for Image Creation)
+* 🔐 **Authentication** — Secure user login via Firebase
+* 🧠 **AI Generation** — Text-to-image via Google Generative AI
+* 📜 **GraphQL** — Fetch only the necessary image metadata
+* 📸 **User History** — View previously generated images
+* 🖼️ **Gallery** — Interactive gallery of all generated content
+* ⚡ **High Performance** — Redis-backed response acceleration
+* 🗂️ **Profile Page** — Personalized user dashboard
+* 🐇 **Efficient Queuing** — RabbitMQ handles background image generation
+* 🐳 **Containerized** — Docker-powered seamless deployment
+* 🌐 **Frontend** — React + TypeScript + TailwindCSS
+* 🔧 **Backend** — Node.js + Express + GraphQL + TypeScript
 
 ---
 
-## 📊 System Architecture & Diagrams
+## 🧠 System Architecture
 
-### 📌 MerMITE - Activity Diagram
+### 🔁 Use Case Diagram
 
 ```mermaid
-flowchart TD
-    A[User Authenticates] --> B[Submits Prompt]
-    B --> C[Prompt sent to Queue]
-    C --> D[Model generates Image]
-    D --> E[Image Displayed to User]
-    E --> F{User Satisfied?}
-    F -->|Yes| G[Store Image in DB + Cloud]
-    F -->|No| H[Discard Image]
-    G --> I[Display in User's Gallery]
-````
-
----
-
-### 📌 MerMITE - Flow Diagram
-
-```mermaid
-flowchart LR
-    Auth[Authentication] --> UI[Frontend App]
-    UI --> Prompt[Prompt Submit]
-    Prompt --> Queue[Add to Redis/RabbitMQ Queue]
-    Queue --> Model[Google GenAI Model]
-    Model --> Image[Generate Image]
-    Image --> UI
-    UI -->|Like| DB[Store in DB]
-    DB --> Gallery[User Gallery View]
+graph TD
+    A[User] -->|Login| B[Firebase Authentication]
+    A -->|Enter Prompt| C[Prompt Submission]
+    C --> D[Redis + RabbitMQ Queue]
+    D --> E[Google GenAI Model]
+    E --> F[Image Generated]
+    F --> G[Display to User]
+    G --> H[Save if Satisfied]
+    H --> I[Store in DB + Cloud]
+    A --> J[View History]
+    A --> K[Profile Page]
 ```
 
 ---
 
-### 📌 MerMITE - Sequence Diagram
+### 🕰️ Sequence Diagram
 
 ```mermaid
 sequenceDiagram
     participant User
     participant Frontend
     participant Backend
+    participant Firebase
     participant Redis
     participant RabbitMQ
-    participant GenAI
+    participant GoogleAI
     participant DB
+    participant Cloud
 
-    User->>Frontend: Login
-    Frontend->>Backend: Send Auth Details
-    Backend->>Firebase: Validate User
-    User->>Frontend: Submit Prompt
-    Frontend->>Backend: Prompt Request
+    User->>Frontend: Sign In
+    Frontend->>Firebase: Authenticate
+    Firebase-->>Frontend: Token
+    Frontend->>Backend: Submit Prompt
     Backend->>Redis: Cache Prompt
-    Backend->>RabbitMQ: Enqueue Prompt
-    RabbitMQ->>GenAI: Generate Image
-    GenAI->>Backend: Return Image
+    Backend->>RabbitMQ: Enqueue Job
+    RabbitMQ->>GoogleAI: Request Image
+    GoogleAI-->>RabbitMQ: Return Image
     Backend->>Frontend: Send Image
     User->>Frontend: Click "Satisfied"
-    Frontend->>Backend: Store Request
-    Backend->>DB: Save Metadata
-    Backend->>Cloudflare: Upload Image
+    Frontend->>Backend: Save Image
+    Backend->>DB: Store Metadata
+    Backend->>Cloud: Upload Image
 ```
 
 ---
 
-## 🖼️ System UI Overview
+### 🔄 Flow Diagram
 
-![System Diagram](https://github.com/jayanth119/imagen/blob/main/systemDesign/systemDesign.png)
+```mermaid
+flowchart LR
+    Auth[Firebase Auth] --> App[Frontend React App]
+    App --> Prompt[User Prompt]
+    Prompt --> Queue[Redis + RabbitMQ]
+    Queue --> AI[Google Generative AI]
+    AI --> Img[Image Response]
+    Img --> App
+    App -->|Like| DB[GraphQL DB Store]
+    DB --> Gallery[User Image Gallery]
+    App --> Profile[User Profile]
+```
 
 ---
 
-## 🧪 Local Development Setup
+## 🔧 Tech Stack
+
+### 🔹 Frontend
+
+* React.js + TypeScript
+* Tailwind CSS
+* Redux Toolkit
+* Vite
+
+### 🔸 Backend
+
+* Node.js + Express + TypeScript
+* GraphQL
+* Redis (Caching)
+* RabbitMQ (Queueing)
+* Firebase (Authentication)
+* Google Generative AI API
+* Cloudflare (Image Storage)
+* Docker (Containerization)
+
+---
+
+## 📁 Folder Structure
+
+```
+IMAGEN/
+├── client/                 # React + TS + Vite + Tailwind
+│   └── src/
+│       └── components/
+│       └── pages/
+│       └── graphql/
+├── server/                 # Express + GraphQL  + AI Logic
+│   └── resolvers/
+│   └── models/
+│   └── queues/
+├── docker/                 # Docker setup
+├── docs/                   # System Design, Diagrams
+└── README.md
+```
+
+---
+
+## 📦 Local Development Setup
 
 ```bash
-# Clone the repo
-git clone https://github.com/jayanth119/Imagen.git
-cd Imagen
+# Clone the repository
+git clone https://github.com/jayanth119/IMAGEN.git
+cd IMAGEN
 
-# Install frontend
+# Install Frontend
 cd client
 npm install
 npm run dev
 
-# Install backend
+# Install Backend
 cd ../server
 npm install
 npm run dev
 ```
 
-> Ensure Docker, Redis, and RabbitMQ are up and running before starting the backend.
+> ⚠️ Ensure Redis, RabbitMQ, and Docker are up before running the backend.
 
 ---
 
-## 🚀 Deployment (Dockerized)
+## 🐳 Docker Deployment
 
 ```bash
-# Build and start services
+# Build and run everything with Docker Compose
 docker-compose up --build
-```
-
----
-
-## 🗃️ Folder Structure
-
-```
-Imagen/
-├── client/                # React + Vite + Tailwind + Redux Toolkit
-├── server/                # Express + TS + AI API Logic
-├── docker/                # Docker configuration
-├── docs/                  # Diagrams & Charts
-└── README.md
 ```
 
 ---
 
 ## ✨ Future Enhancements
 
-* Support for multi-model selection
-* Image editing (masking, inpainting)
-* Role-based access (admin vs user)
-* Prompt analytics and image insights
-* Infinite scroll in Gallery
+* 🧑‍🎨 Image inpainting & editing
+* 📊 Prompt analytics
+* 📈 Performance monitoring dashboard
+* 🎭 Role-based access (admin, power user, guest)
+* ♾️ Infinite scroll for gallery
+* 🧩 Multi-model support for text-to-image
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions! Please fork the repo and submit a PR.
+We welcome all kinds of contributions!
+
+1. Fork the repo
+2. Create a new branch (`git checkout -b feature-xyz`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature-xyz`)
+5. Open a Pull Request
 
 ---
 
+## 📬 Contact
 
-```
+Feel free to reach out at [chjayanth119@gmail.com](mailto:chjayanth119@gmail.com)
+Follow me on GitHub: [@jayanth119](https://github.com/jayanth119)
