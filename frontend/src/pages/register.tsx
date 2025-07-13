@@ -8,7 +8,9 @@ export default function RegisterPage() {
     <NavbarComponent />
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <RegisterForm />
+        <RegisterForm  onSwitchToLogin = {function (): void {
+          throw new Error("Function not implemented.")
+        } } />
       </div>
     </div>
     <Footer />

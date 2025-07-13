@@ -1,4 +1,4 @@
-import { LoginForm } from "@/components/login-form"
+import { LoginForm } from "../components/login-form"
 import Footer from "@/components/footerComponent"
 import { NavbarComponent } from "@/components/navbarComponent"
 export default function LoginPage() {
@@ -7,7 +7,9 @@ export default function LoginPage() {
     <NavbarComponent />
     <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
       {/* <div className="w-full max-w-sm"> */}
-        <LoginForm />
+        <LoginForm onSwitchToRegister={function (): void {
+          throw new Error("Function not implemented.")
+        } } />
       {/* </div> */}
     </div>
     <Footer />
