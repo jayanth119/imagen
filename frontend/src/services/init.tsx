@@ -1,16 +1,15 @@
 import axios from 'axios';
 
 const axiosInstance_private = axios.create({
-  baseURL: "http://localhost:3000/api", // Changed from 127.0.0.1 to localhost
-  timeout: 10000,
+  baseURL: "http://localhost:3000/api",
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 const axiosInstance_public = axios.create({
-  baseURL: "http://localhost:3000/api", // Changed from 127.0.0.1 to localhost
-  timeout: 10000,
+  baseURL: "http://localhost:3000/api", 
+
   headers: {
     'Content-Type': 'application/json',
   },

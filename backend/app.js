@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(path.dirname(new URL(import.meta.url).pathname), "public")));
 
 // Routes
-app.use("/gemini", geminiRouter);
+app.use("/api/gemini", geminiRouter);
 app.use("/api/cloudinary", cloudinaryRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/qdrant", QdrantRoute);
